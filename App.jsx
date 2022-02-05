@@ -4,7 +4,6 @@ import { AuthContext, AuthProvider } from './src/contexts/authContext';
 import SearchBar from './app/searchBar.js';
 
 import { useContext } from 'react';
-import './src/components/ContentCard';
 
 export default function App() {
   const user = useContext(AuthContext);
@@ -12,7 +11,7 @@ export default function App() {
   return (
     <AuthProvider>
       <View style={styles.container}>
-        <SearchBar />
+        <SearchBar/>
         <Text>Sign in screen</Text>
         <Button
           onPress={signInWithGoogle}
@@ -20,22 +19,14 @@ export default function App() {
         />
       </View>
     </AuthProvider>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  navButton: {
-    textAlign: "center",
-    fontSize: 24,
-  },
-  nav:{
-    flexDirection: 'row',
-    justifyContent: 'space-evenly'
-  }
 });
