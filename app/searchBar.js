@@ -3,34 +3,33 @@ import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
 
 export default function SearchBar() {
   const [search, setSearch] = React.useState('');
-  const [filters, setFilters] = React.useState(
-    {
-      'clothing': {
-        name: "clothing",
-        active: false
-      },
-      'technology/appliances': {
-        name: "technology/appliances",
-        active: false
-      },
-      'furniture': {
-        name: "furniture",
-        active: false
-      },
-      'bathroom': {
-        name: "bathroom",
-        active: false
-      },
-      'house': {
-        name: "house",
-        active: false
-      },
-      'kitchen': {
-        name: "kitchen",
-        active: false
-      },
-    }
-  )
+  const filters =
+  {
+    'clothing': {
+      name: "clothing",
+      active: false
+    },
+    'technology/appliances': {
+      name: "technology/appliances",
+      active: false
+    },
+    'furniture': {
+      name: "furniture",
+      active: false
+    },
+    'bathroom': {
+      name: "bathroom",
+      active: false
+    },
+    'house': {
+      name: "house",
+      active: false
+    },
+    'kitchen': {
+      name: "kitchen",
+      active: false
+    },
+  }
 
   const handleSubmit = event => {
     console.log(search)
@@ -38,13 +37,12 @@ export default function SearchBar() {
   }
 
   const handlePress = (tag) => {
-    console.log(tag)
-    setFilters({
-      ...filters,
-      tag.active = true
-    })
+    filters[tag].active = !filters[tag].active
     // event.preventDefault()
   }
+
+
+
 
   return (
     <View style={styles.container}>
@@ -59,7 +57,7 @@ export default function SearchBar() {
       <View style={styles.filterList}>
         {Object.entries(filters).map((tag) => (
           <Pressable
-            style={styles.filterButton}
+            style={tag.active ? (styles.buttonPressed) : (styles.button)}
             onPress={() => handlePress(tag[0])}
           >
             <Text style={styles.filterText}>{tag[0]}</Text>
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
   },
-  filterButton: {
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 5,
@@ -97,6 +95,9 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderWidth: 1,
     borderRadius: 20,
+  },
+  buttonPressed: {
+    backgroundColor: 'red',
   },
   filterText: {
     color: 'black',
