@@ -2,57 +2,45 @@ import React from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
 import { ContentCard } from '../src/components/ContentCard';;
 import { db } from '../src/firebase';
-import { collection, doc, query, where } from 'firebase/firestore';
+import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 
 export default function SearchBar() {
   const [search, setSearch] = React.useState('');
-  const filters =
-  {
-    'clothing': {
-      name: "clothing",
-      active: true
-    },
-    'technology/appliances': {
-      name: "technology/appliances",
-      active: true
-    },
-    'furniture': {
-      name: "furniture",
-      active: false
-    },
-    'bathroom': {
-      name: "bathroom",
-      active: false
-    },
-    'house': {
-      name: "house",
-      active: false
-    },
-    'kitchen': {
-      name: "kitchen",
-      active: false
-    },
-  }
+  const [filters, setFilters] = React.useState({
+    'clothing': true,
+    'technology/appliances': false,
+    'furniture': false,
+    'bathroom': false,
+    'house': false,
+    'kitchen': false,
+  });
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     console.log(search);
     event.preventDefault();
     Object.entries(filters).map((tag) => {
-      console.log(tag[1].active);
-      if(tag[1].active){
-        const tagDocRef = db.collection('categories').doc(tag[0]).collection('posts');
+      console.log(tag[1]);
+      if(tag[1]){
+        const tagDocRef = collection(db, 'categories', tag[0], 'posts');
         // const q = query(tagDocRef, where())
+        getDocs(tagDocRef)
+        .then((response) => {
+          response.forEach((doc) => {
+            console.log(doc);
+          })
+        });
       }
     });
   }
 
   const handlePress = (tag) => {
-    filters[tag].active = !filters[tag].active
-    // event.preventDefault()
+    console.log(tag)
+    setFilters({
+      ...filters,
+      [tag]: !filters[tag]
+    })
+    console.log(filters)
   }
-
-
-
 
   return (
     <View style={styles.container}>
@@ -67,7 +55,9 @@ export default function SearchBar() {
       <View style={styles.filterList}>
         {Object.entries(filters).map((tag) => (
           <Pressable
-            style={tag.active ? (styles.buttonPressed) : (styles.button)}
+            style={
+              tag[1] ? styles.buttonPressed : styles.button
+            }
             onPress={() => handlePress(tag[0])}
           >
             <Text style={styles.filterText}>{tag[0]}</Text>
@@ -107,7 +97,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   buttonPressed: {
-    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    marginHorizontal: 5,
+    marginVertical: 5,
+    borderWidth: 1,
+    borderRadius: 20,
+    backgroundColor: 'lightblue',
   },
   filterText: {
     color: 'black',
