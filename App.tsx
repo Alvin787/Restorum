@@ -1,19 +1,22 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { auth, signInWithGoogle, logOut } from './src/firebase';
-import { AuthContext, AuthProvider } from './src/contexts/authContext';
-import { useContext } from 'react';
+import { StyleSheet, Text, View, Button } from "react-native";
+import { auth, signInWithGoogle, logOut } from "./src/firebase";
+import { AuthContext, AuthProvider } from "./src/contexts/authContext";
+import { useContext } from "react";
 
 export default function App() {
   const user = useContext(AuthContext);
 
   return (
     <AuthProvider>
-      <View style={styles.container}>
-        <Text>Sign in screen</Text>
-        <Button
-          onPress={signInWithGoogle}
-          title="Sign in with Google"
-        />
+      <View style={{ padding: 40, flex: 1 }}>
+        <View style={styles.nav}>
+          <Text >Home</Text>
+          <Text >Forum</Text>
+        </View>
+        <View style={styles.container}>
+          <Text>Sign in screen</Text>
+          <Button onPress={signInWithGoogle} title="Sign in with Google" />
+        </View>
       </View>
     </AuthProvider>
   );
@@ -22,8 +25,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
+  navButton: {
+    textAlign: "center",
+    fontSize: 24,
+  },
+  nav:{
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  }
 });
