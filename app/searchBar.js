@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
+import { ContentCard } from '../src/components/ContentCard';;
+import { db } from '../src/firebase';
+import { collection, doc, query, where } from 'firebase/firestore';
 
 export default function SearchBar() {
   const [search, setSearch] = React.useState('');
@@ -7,11 +10,11 @@ export default function SearchBar() {
   {
     'clothing': {
       name: "clothing",
-      active: false
+      active: true
     },
     'technology/appliances': {
       name: "technology/appliances",
-      active: false
+      active: true
     },
     'furniture': {
       name: "furniture",
@@ -32,8 +35,15 @@ export default function SearchBar() {
   }
 
   const handleSubmit = event => {
-    console.log(search)
-    event.preventDefault()
+    console.log(search);
+    event.preventDefault();
+    Object.entries(filters).map((tag) => {
+      console.log(tag[1].active);
+      if(tag[1].active){
+        const tagDocRef = db.collection('categories').doc(tag[0]).collection('posts');
+        // const q = query(tagDocRef, where())
+      }
+    });
   }
 
   const handlePress = (tag) => {
