@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
-import { ContentCard } from '../src/components/ContentCard';;
-import { db } from '../src/firebase';
+import { ContentCard } from './ContentCard';;
+import { db } from '../firebase';
 import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 
 export default function SearchBar() {
@@ -14,6 +14,7 @@ export default function SearchBar() {
     'house': false,
     'kitchen': false,
   });
+  const [posts, setPosts] = useState();
 
   const handleSubmit = (event) => {
     console.log(search);

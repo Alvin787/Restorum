@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { auth, signInWithGoogle, logOut } from './src/firebase';
 import { AuthContext, AuthProvider } from './src/contexts/authContext';
-import SearchBar from './app/searchBar.js';
+import SearchBar from './src/components/searchBar.js';
 
 import { useContext } from 'react';
 import './src/components/ContentCard';
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 24,
   },
-  nav:{
+  nav: {
     flexDirection: 'row',
     justifyContent: 'space-evenly'
   }
