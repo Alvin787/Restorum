@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Button, Image, ScrollView } from "react-native";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements";
 import dateFormat from 'dateformat';
@@ -35,6 +35,7 @@ const Post = ({route, navigation}) => {
   
 
   return (
+    <ScrollView>
     <Card style={styles.card}>
       <Text style={styles.header}>
         Posted by: {postData.author} |{" "}
@@ -78,6 +79,7 @@ const Post = ({route, navigation}) => {
       </Text>
       <Button color={Colors.primary} onPress={() => navigation.goBack()} title="GO BACK"></Button>
     </Card>
+    </ScrollView>
   );
 };
 
@@ -86,11 +88,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+  card: {
+    alignItems: "center",
+  },
   image: {
     height: 300,
     borderRadius: 10,
     padding: 30,
-    resizeMode: "cover",
+    width: '100%'
   },
   title: {
     fontSize: 20,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TextInput, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Pressable, ScrollView } from 'react-native';
 import { Icon } from "react-native-elements";
 import { auth, signInWithGoogle, logOut } from '../../src/firebase';
 import { AuthContext, AuthProvider } from '../contexts/authContext';
@@ -84,46 +84,50 @@ export default function Home({navigation}) {
 
   return (
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Restorum</Text>
-        </View>
-        <TextInput
-            style={styles.input}
-            placeholder="Search"
-            onChangeText={newText => setSearch(newText)}
-            onSubmitEditing={handleSubmit}
-            value={search}
-        />
-        <View style={styles.filterList}>
-            {Object.entries(filters).map((tag) => (
-            <Pressable
-                style={
-                tag[1] ? [{ borderColor: Colors.primary, backgroundColor: Colors.primary }, styles.button] : styles.button
-                }
-                onPress={() => handlePress(tag[0])}
-            >
-                <Text style={tag[1] ? { color: Colors.secondary } : { color: Colors.dark }}>{tag[0]}</Text>
-            </Pressable>
-            ))}
-        </View>
-        <View style={styles.results}>
-            {postsJSX ? postsJSX : null}
-        </View>
-        <View style={{
-          position: 'absolute',
-          top: 0,
-          left: 0
-        }}>
-          <Icon
-            raised
-            name="add"
-            type="material"
-            color={Colors.primary}
-            onPress={() => {
-              navigation.navigate('Create Post'); 
-            }}
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.scrollInner}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Restorum</Text>
+            </View>
+            <TextInput
+                style={styles.input}
+                placeholder="Search"
+                onChangeText={newText => setSearch(newText)}
+                onSubmitEditing={handleSubmit}
+                value={search}
+            />
+            <View style={styles.filterList}>
+                {Object.entries(filters).map((tag) => (
+                <Pressable
+                    style={
+                    tag[1] ? [{ borderColor: Colors.primary, backgroundColor: Colors.primary }, styles.button] : styles.button
+                    }
+                    onPress={() => handlePress(tag[0])}
+                >
+                    <Text style={tag[1] ? { color: Colors.secondary } : { color: Colors.dark }}>{tag[0]}</Text>
+                </Pressable>
+                ))}
+            </View>
+            <View style={styles.results}>
+                {postsJSX ? postsJSX : null}
+            </View>
+            <View style={{
+              position: 'absolute',
+              top: 0,
+              left: 0
+            }}>
+              <Icon
+                raised
+                name="add"
+                type="material"
+                color={Colors.primary}
+                onPress={() => {
+                  navigation.navigate('Create Post'); 
+                }}
+              />
+            </View>
+          </View>
+        </ScrollView>
       </View>
   );
 }
@@ -132,6 +136,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+  },
+  scrollInner: {
     alignItems: "center",
   },
   results: {
