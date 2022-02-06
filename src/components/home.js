@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Button, TextInput, Pressable  } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Pressable } from 'react-native';
+import { Icon } from "react-native-elements";
 import { auth, signInWithGoogle, logOut } from '../../src/firebase';
 import { AuthContext, AuthProvider } from '../contexts/authContext';
 import React, { useState, useEffect } from 'react';
@@ -76,6 +77,10 @@ export default function Home({navigation}) {
     console.log(filters)
   }
 
+  const handleUpload = (event) => {
+    console.log(event)
+  }
+
   const routeToCard = (post) => {
     navigation.navigate('Post Page', post);  
   }
@@ -83,39 +88,44 @@ export default function Home({navigation}) {
   return (
     <AuthProvider>
       <View style={styles.container}>
-        <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Restorum</Text>
-          </View>
-          <TextInput
-              style={styles.input}
-              placeholder="Search"
-              onChangeText={newText => setSearch(newText)}
-              onSubmitEditing={handleSubmit}
-              value={search}
-          />
-          <View style={styles.filterList}>
-              {Object.entries(filters).map((tag) => (
-              <Pressable
-                  style={
-                  tag[1] ? [{ borderColor: Colors.primary, backgroundColor: Colors.primary }, styles.button] : styles.button
-                  }
-                  onPress={() => handlePress(tag[0])}
-              >
-                  <Text style={tag[1] ? { color: Colors.secondary } : { color: Colors.dark }}>{tag[0]}</Text>
-              </Pressable>
-              ))}
-          </View>
-          <View style={styles.results}>
-              {postsJSX ? postsJSX : null}
-          </View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Restorum</Text>
         </View>
-        
-        <Button
-          color={Colors.primary}
-          onPress={() => {signInWithGoogle()}}
-          title="Sign in with Google"
+        <TextInput
+            style={styles.input}
+            placeholder="Search"
+            onChangeText={newText => setSearch(newText)}
+            onSubmitEditing={handleSubmit}
+            value={search}
         />
+        <View style={styles.filterList}>
+            {Object.entries(filters).map((tag) => (
+            <Pressable
+                style={
+                tag[1] ? [{ borderColor: Colors.primary, backgroundColor: Colors.primary }, styles.button] : styles.button
+                }
+                onPress={() => handlePress(tag[0])}
+            >
+                <Text style={tag[1] ? { color: Colors.secondary } : { color: Colors.dark }}>{tag[0]}</Text>
+            </Pressable>
+            ))}
+        </View>
+        <View style={styles.results}>
+            {postsJSX ? postsJSX : null}
+        </View>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0
+        }}>
+          <Icon
+            raised
+            name="add"
+            type="material"
+            color={Colors.primary}
+            onPress={handleUpload}
+          />
+        </View>
       </View>
     </AuthProvider>
   );
