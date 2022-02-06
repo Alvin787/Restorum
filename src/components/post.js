@@ -8,6 +8,8 @@ const Post = (props) => {
   // display it
   const propData = props.data;
 
+  
+
   return (
     <Card style={styles.card}>
       <Text style={styles.header}>Posted by: Username</Text>
