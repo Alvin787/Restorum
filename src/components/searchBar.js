@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
-import { ContentCard } from './ContentCard';;
+import ContentCard from './UI/ContentCard';;
 import { db } from '../firebase';
 import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 
@@ -15,24 +15,61 @@ export default function SearchBar() {
     'kitchen': false,
     'automotives': false,
   });
-  const [posts, setPosts] = useState();
 
-  const handleSubmit = (event) => {
-    console.log(search);
-    event.preventDefault();
-    Object.entries(filters).map((tag) => {
-      console.log(tag[1]);
+//   const postData = {
+//     category: "clothing",
+//     title: "post title",
+//     author: "Firstname Lastname",
+//     body: "thsi is the body of the post",
+//     description: "a short description",
+//     date: new Date(1644095338065),
+//     likes: 12,
+// }
+  const [posts, setPosts] = useState([]);
+  const [postsJSX, setPostsJSX] = useState(null);
+
+  // get posts based on tags selected
+  const getPosts = async () => {
+    let postSearchResults = [];
+    for (const tag of Object.entries(filters)) {
       if(tag[1]){
         const tagDocRef = collection(db, 'categories', tag[0], 'posts');
         // const q = query(tagDocRef, where())
-        getDocs(tagDocRef)
-        .then((response) => {
-          response.forEach((doc) => {
-            console.log(doc);
-          })
-        });
+
+        const response = await getDocs(tagDocRef);
+        response.forEach((doc) => {
+          let currentPost = doc.data();
+          currentPost.category = tag[0];
+          currentPost.date = new Date(currentPost.date);
+          postSearchResults.push(currentPost);
+        })
       }
+    }
+    
+    setPosts(postSearchResults);
+  }
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  // update post jsx when post data changes
+  useEffect(() => {
+    // console.log(posts);
+    // console.log(posts.length);
+    let postsJSXList = [];
+    posts.forEach((post) => {
+      console.log(post);
+      postsJSXList.push(<ContentCard data={post}/>);
     });
+    setPostsJSX(postsJSXList);
+    
+  }, [posts]);
+  
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    getPosts();
   }
 
   const handlePress = (tag) => {
@@ -53,7 +90,6 @@ export default function SearchBar() {
         onSubmitEditing={handleSubmit}
         value={search}
       />
-
       <View style={styles.filterList}>
         {Object.entries(filters).map((tag) => (
           <Pressable
@@ -65,6 +101,11 @@ export default function SearchBar() {
             <Text style={styles.filterText}>{tag[0]}</Text>
           </Pressable>
         ))}
+      </View>
+
+
+      <View>
+        {postsJSX ? postsJSX : null}
       </View>
 
     </View>  
