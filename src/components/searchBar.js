@@ -81,6 +81,16 @@ export default function SearchBar() {
   }
 
   return (
+    <AuthProvider>
+      <View style={styles.container}>
+        <SearchBar />
+        <Text>Sign in screen</Text>
+        <Button
+          onPress={routeToCard}
+          title="Sign in with Google"
+        />
+      </View>
+    
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -108,6 +118,7 @@ export default function SearchBar() {
       </View>
 
     </View>  
+    </AuthProvider>
   );
 }
 
