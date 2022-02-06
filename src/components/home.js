@@ -106,14 +106,14 @@ export default function Home({navigation}) {
               </Pressable>
               ))}
           </View>
-          <View>
+          <View style={styles.results}>
               {postsJSX ? postsJSX : null}
           </View>
         </View>
-        <Text>Sign in screen</Text>
+        
         <Button
           color={Colors.primary}
-          onPress={routeToCard}
+          onPress={() => {signInWithGoogle()}}
           title="Sign in with Google"
         />
       </View>
@@ -126,6 +126,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+  },
+  results: {
+    width: '80%',
   },
   titleContainer: {
     backgroundColor: "#fff",
