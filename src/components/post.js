@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, Pressable, Image } from "react-native";
+import React, {useEffect, useState} from "react";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements";
 import dateFormat from 'dateformat';
@@ -8,6 +8,28 @@ const Post = ({route, navigation}) => {
   // get data from contentCard
   // display it
   const postData = route.params;
+  // postData = {
+  //   category: "clothing",
+  //   title: "post title",
+  //   author: "Firstname Lastname",
+  //   body: "thsi is the body of the post",
+  //   description: "a short description",
+  //   date: new Date(1644095338065),
+  //   likes: 12,
+  // }
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(postData.likes);
+
+  const handleLike = () => {
+    console.log('liked');
+    if(!liked){
+      setLikes(likes+1);
+      setLiked(true);
+    }else{
+      setLikes(likes-1);
+      setLiked(false);
+    }
+  }
 
   
 
@@ -25,10 +47,11 @@ const Post = ({route, navigation}) => {
         <Icon
           raised
           name="favorite"
+          color={liked? "red" : "black"}
           type="material"
-          onPress={() => console.log("hello")}
+          onPress={() => {handleLike()}}
         />
-        <Text style={{ textAlign: "center", marginTop: 25 }}>{postData.likes == undefined ? 0 : postData.likes} Likes</Text>
+        <Text style={{ textAlign: "center", marginTop: 25 }}> {likes} Likes</Text>
         <Icon
           style={{ alignContent: "right" }}
           raised
