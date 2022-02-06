@@ -20,6 +20,7 @@ export default function Home({navigation}) {
     'bathroom': true,
     'house': true,
     'kitchen': true,
+    "automotive": true, 
   });
   const [posts, setPosts] = useState([]);
   const [postsJSX, setPostsJSX] = useState(null);
@@ -126,7 +127,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
   },
   titleContainer: {
     backgroundColor: "#fff",
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
+    marginVertical: 40,
   },
   input: {
     height: 40,
