@@ -47,7 +47,7 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [filters]);
 
   // update post jsx when post data changes
   useEffect(() => {
