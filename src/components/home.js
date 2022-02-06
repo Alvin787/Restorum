@@ -46,7 +46,7 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [filters]);
 
   // update post jsx when post data changes
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function Home({navigation}) {
                     </Pressable>
                     ))}
                 </View>
-                <View>
+                <View style={styles.results}>
                     {postsJSX ? postsJSX : null}
                 </View>
             </View>
@@ -121,6 +121,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
+    },
+    results: {
+      width: '80%',
     },
       input: {
         height: 40,
