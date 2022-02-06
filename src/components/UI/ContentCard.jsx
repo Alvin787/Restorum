@@ -7,12 +7,8 @@ import dateFormat from 'dateformat';
 
 const ContentCard = (props) => {
     const user = useContext(AuthContext);
-    let postData = props.data;
 
-    const routeToPostBody = () => {
-        console.log('route');
-
-    }
+    const postData = props.data;
     return (
         <Card>
             <Card.Title>{postData.title}</Card.Title>
@@ -20,7 +16,7 @@ const ContentCard = (props) => {
             <Text>Posted in {postData.category}</Text>
             <Card.Divider />
             <Text>{postData.description}</Text>
-            <Button onPress={routeToPostBody} title={"Read more"} />
+            <Button onPress={() => {props.routeToPostBody(postData)}} title={"Read more"} />
         </Card>
     )
 };

@@ -1,43 +1,19 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { auth, signInWithGoogle, logOut } from './src/firebase';
-import { AuthContext, AuthProvider } from './src/contexts/authContext';
-import SearchBar from './src/components/searchBar.js';
-
-import { useContext } from 'react';
-import ContentCard from './src/components/UI/ContentCard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/components/home';
+import ContentCard from './src/components/UI/ContentCard.jsx';
 import Post from './src/components/post';
 
-export default function App() {
-  const user = useContext(AuthContext);
+const Stack = createNativeStackNavigator();
 
+export default function App() {
   return (
-    <AuthProvider>
-      <Post></Post>
-      <View style={styles.container}>
-        <SearchBar />
-        <Text>Sign in screen</Text>
-        <Button
-          onPress={signInWithGoogle}
-          title="Sign in with Google"
-        />
-      </View>
-    </AuthProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Post Page" component={Post} />
+        <Stack.Screen name="Content Card" component={ContentCard} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  navButton: {
-    textAlign: "center",
-    fontSize: 24,
-  },
-  nav: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly'
-  }
-});
