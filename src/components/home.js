@@ -77,16 +77,12 @@ export default function Home({navigation}) {
     console.log(filters)
   }
 
-  const handleUpload = (event) => {
-    console.log(event)
-  }
 
   const routeToCard = (post) => {
     navigation.navigate('Post Page', post);  
   }
 
   return (
-    <AuthProvider>
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Restorum</Text>
@@ -123,11 +119,12 @@ export default function Home({navigation}) {
             name="add"
             type="material"
             color={Colors.primary}
-            onPress={handleUpload}
+            onPress={() => {
+              navigation.navigate('Create Post'); 
+            }}
           />
         </View>
       </View>
-    </AuthProvider>
   );
 }
 
