@@ -36,23 +36,31 @@ const Post = ({route, navigation}) => {
 
   return (
     <Card style={styles.card}>
-      <Text style={styles.header}>Posted by: {postData.author} | {dateFormat(postData.date, "mmmm dS, yyyy")}</Text>
+      <Text style={styles.header}>
+        Posted by: {postData.author} |{" "}
+        {dateFormat(postData.date, "mmmm dS, yyyy")}
+      </Text>
 
       <Text style={styles.title}>{postData.title}</Text>
 
       <Image
         style={styles.image}
-        source={{ uri: "https://picsum.photos/200/300" }}
+        source={require("../../assets/pants.png")}
       />
       <View style={styles.icon}>
         <Icon
           raised
           name="favorite"
-          color={liked? "red" : "black"}
+          color={liked ? "red" : "black"}
           type="material"
-          onPress={() => {handleLike()}}
+          onPress={() => {
+            handleLike();
+          }}
         />
-        <Text style={{ textAlign: "center", marginTop: 25 }}> {likes} Likes</Text>
+        <Text style={{ textAlign: "center", marginTop: 25 }}>
+          {" "}
+          {likes} Likes
+        </Text>
         <Icon
           style={{ alignContent: "right" }}
           raised
@@ -65,10 +73,12 @@ const Post = ({route, navigation}) => {
       <Card.Divider style={{ paddingBottom: 10 }} />
 
       <Text style={styles.title}>Description</Text>
-      <Text style={styles.description}>
-      {postData.description}
-      </Text>
-      <Button color={Colors.primary} onPress={() => navigation.goBack()} title="GO BACK"></Button>
+      <Text style={styles.description}>{postData.description}</Text>
+      <Button
+        color={Colors.primary}
+        onPress={() => navigation.goBack()}
+        title="GO BACK"
+      ></Button>
     </Card>
   );
 };
