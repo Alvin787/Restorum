@@ -14,6 +14,8 @@
 - Run ```npm install```
 - Run ```npm start```
 
+##UofT Hacks 2022 Submission:
+
 ## Inspiration
 Wish to be more conscious about your waste output? Restorum is just the app for you! We created a communal hub that lets you share tutorials/guides for the maintenance and repair of personal items.
 
