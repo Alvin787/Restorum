@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.4.1",
     "dateformat": "^5.0.2",
     "expo": "^44.0.0",
     "firebase": "^9.4.1",
@@ -8,7 +10,8 @@
     "react-native": "0.64.3",
     "react-native-elements": "^3.4.2",
     "react-native-picker-select": "^8.0.4",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "react-navigation": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
