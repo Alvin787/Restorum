@@ -31,6 +31,8 @@ const Post = ({route, navigation}) => {
     }
   }
 
+  
+
   return (
     <Card style={styles.card}>
       <Text style={styles.header}>Posted by: {postData.author} | {dateFormat(postData.date, "mmmm dS, yyyy")}</Text>
