@@ -8,6 +8,12 @@
   <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
 </p>
 
+## 🚀 How to use
+
+- Install the CLI: ```npm i -g expo-cli```
+- Run ```npm install```
+- Run ```npm start```
+- 
 ## Inspiration
 Wish to be more conscious about your waste output? Restorum is just the app for you! We created a communal hub that lets you share tutorials/guides for the maintenance and repair of personal items.
 
@@ -67,10 +73,6 @@ Technical:
 - We plan to expand into the metaverse
 - Add comment section for posts
 
-## 🚀 How to use
 
-- Install the CLI: ```npm i -g expo-cli```
-- Run ```npm install```
-- Run ```npm start```
 
 
