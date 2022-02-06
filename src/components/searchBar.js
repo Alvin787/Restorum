@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
-import { ContentCard } from './ContentCard';;
+import { ContentCard } from './UI/ContentCard';;
 import { db } from '../firebase';
 import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 

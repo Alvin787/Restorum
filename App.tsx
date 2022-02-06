@@ -4,13 +4,16 @@ import { AuthContext, AuthProvider } from './src/contexts/authContext';
 import SearchBar from './src/components/searchBar.js';
 
 import { useContext } from 'react';
-import './src/components/ContentCard';
+import ContentCard from './src/components/UI/ContentCard';
+import Post from './src/components/post';
 
 export default function App() {
   const user = useContext(AuthContext);
 
   return (
     <AuthProvider>
+      <Post></Post>
+      <ContentCard/>
       <View style={styles.container}>
         <SearchBar />
         <Text>Sign in screen</Text>
