@@ -13,6 +13,7 @@ export default function SearchBar() {
     'bathroom': false,
     'house': false,
     'kitchen': false,
+    'automotives': false,
   });
   const [posts, setPosts] = useState();
 
