@@ -45,8 +45,8 @@ export default function CreatePost({ navigation }) {
 
 
   return (
-    <View>
-      {user.currentUser !== null ?
+    <View style={{ justifyContent: "center", padding: 20 }}>
+      {user.currentUser !== null ? (
         <>
           <TextInput
             style={styles.input}
@@ -59,15 +59,15 @@ export default function CreatePost({ navigation }) {
             style={pickerSelectStyles}
             onValueChange={(value) => setCategory(value)}
             items={[
-              { label: 'Clothing', value: 'clothing' },
-              { label: 'Appliances', value: 'appliances' },
-              { label: 'Furniture', value: 'furniture' },
-              { label: 'Bathroom', value: 'bathroom' },
-              { label: 'House', value: 'house' },
-              { label: 'Kitchen', value: 'kitchen' },
-              { label: 'Automotives', value: 'automotives' },
+              { label: "Clothing", value: "clothing" },
+              { label: "Appliances", value: "appliances" },
+              { label: "Furniture", value: "furniture" },
+              { label: "Bathroom", value: "bathroom" },
+              { label: "House", value: "house" },
+              { label: "Kitchen", value: "kitchen" },
+              { label: "Automotives", value: "automotives" },
             ]}
-            placeholder={{ label: 'Select a category...', value: 'nope' }}
+            placeholder={{ label: "Select a category...", value: "nope" }}
           />
 
           <TextInput
@@ -80,36 +80,42 @@ export default function CreatePost({ navigation }) {
           />
           <Button style={styles.button} title="Upload" onPress={handleSubmit} />
 
-          <Text style={isError ? { color: 'red' } : { visibility: 'hidden' }}>
+          <Text style={isError ? { color: "red" } : { visibility: "hidden" }}>
             * Error - Missing one or more fields
           </Text>
 
           <Pressable
             style={styles.buttonSignIn}
-            onPress={() => { logOut(); console.log(user); }}
+            onPress={() => {
+              logOut();
+              console.log(user);
+            }}
           >
             <Text>Sign out</Text>
           </Pressable>
         </>
-        :
+      ) : (
         <View>
           <Pressable
             style={styles.buttonSignIn}
-            onPress={() => { signInWithGoogle(); console.log(user); }}
+            onPress={() => {
+              signInWithGoogle();
+              console.log(user);
+            }}
           >
             <Text>Sign in with Google</Text>
           </Pressable>
         </View>
-      }
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   input: {
-    width: 300,
     borderWidth: 1,
-    padding: 5,
+    padding: 10,
+    margin: 10,
     marginVertical: 15,
   },
   button: {
@@ -117,15 +123,15 @@ const styles = StyleSheet.create({
   },
   buttonSignIn: {
     width: 170,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 15,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 15,
     backgroundColor: Colors.primary,
-  }
+  },
 });
 
 const pickerSelectStyles = StyleSheet.create({
@@ -134,20 +140,22 @@ const pickerSelectStyles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderRadius: 4,
-    color: 'black',
+    color: "black",
     paddingRight: 30, // to ensure the text is never behind the icon
+    margin: 10,
   },
   inputAndroid: {
     fontSize: 16,
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
-    borderColor: 'purple',
+    borderColor: "purple",
     borderRadius: 8,
-    color: 'black',
+    color: "black",
     paddingRight: 30, // to ensure the text is never behind the icon
+    margin: 10,
   },
 });
 
