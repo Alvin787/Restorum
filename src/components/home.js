@@ -20,6 +20,7 @@ export default function Home({navigation}) {
     'bathroom': true,
     'house': true,
     'kitchen': true,
+    "automotive": true, 
   });
   const [posts, setPosts] = useState([]);
   const [postsJSX, setPostsJSX] = useState(null);
