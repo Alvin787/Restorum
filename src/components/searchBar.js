@@ -45,13 +45,12 @@ export default function SearchBar() {
         })
       }
     }
-    
     setPosts(postSearchResults);
   }
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [filters]);
 
   // update post jsx when post data changes
   useEffect(() => {
