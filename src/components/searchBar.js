@@ -7,8 +7,8 @@ import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 export default function SearchBar() {
   const [search, setSearch] = React.useState('');
   const [filters, setFilters] = React.useState({
-    'clothing': true,
-    'technology/appliances': false,
+    'clothing': false,
+    'appliances': false,
     'furniture': false,
     'bathroom': false,
     'house': false,
@@ -45,13 +45,12 @@ export default function SearchBar() {
         })
       }
     }
-    
     setPosts(postSearchResults);
   }
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [filters]);
 
   // update post jsx when post data changes
   useEffect(() => {

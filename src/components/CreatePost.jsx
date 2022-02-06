@@ -31,19 +31,19 @@ export default function CreatePost() {
 
     const postTime = Date.now()
 
-    const obbyj = {title: title, category: category, body: body, author: user.currentUser.displayName, date: postTime}
+    const obbyj = { title: title, category: category, body: body, author: user.currentUser.displayName, date: postTime, likes: 0 }
 
     console.log(obbyj)
 
     const tagDocRef = doc(db, 'categories', category, 'posts', title);
 
     await setDoc(tagDocRef, obbyj);
-  } 
+  }
 
 
   return (
     <View>
-      <TextInput 
+      <TextInput
         style={styles.input}
         placeholder="Title"
         value={title}
@@ -51,18 +51,18 @@ export default function CreatePost() {
       />
 
       <RNPickerSelect
-          style={pickerSelectStyles}
-          onValueChange={(value) => setCategory(value)}
-          items={[
-              { label: 'Clothing', value: 'clothing' },
-              { label: 'Appliances', value: 'appliances' },
-              { label: 'Furniture', value: 'furniture' },
-              { label: 'Bathroom', value: 'bathroom' },
-              { label: 'House', value: 'house' },
-              { label: 'Kitchen', value: 'kitchen' },
-              { label: 'Automotives', value: 'automotives' },
-          ]}
-          placeholder={{ label: 'Select a category...', value: 'nope' }}
+        style={pickerSelectStyles}
+        onValueChange={(value) => setCategory(value)}
+        items={[
+          { label: 'Clothing', value: 'clothing' },
+          { label: 'Appliances', value: 'appliances' },
+          { label: 'Furniture', value: 'furniture' },
+          { label: 'Bathroom', value: 'bathroom' },
+          { label: 'House', value: 'house' },
+          { label: 'Kitchen', value: 'kitchen' },
+          { label: 'Automotives', value: 'automotives' },
+        ]}
+        placeholder={{ label: 'Select a category...', value: 'nope' }}
       />
 
       <TextInput
@@ -73,8 +73,8 @@ export default function CreatePost() {
         value={body}
         onChangeText={(newValue) => setBody(newValue)}
       />
-      <Button style={styles.button} title="Upload" onPress={handleSubmit}/>
-        
+      <Button style={styles.button} title="Upload" onPress={handleSubmit} />
+
       <Text style={isError ? { color: 'red' } : { visibility: 'hidden' }}>
         * Error - Missing one or more fields
       </Text>
@@ -83,15 +83,15 @@ export default function CreatePost() {
 }
 
 const styles = StyleSheet.create({
-    input: {
-      width: 300,
-      borderWidth: 1,
-      padding: 5,
-      marginVertical: 15,
-    },
-    button: {
-      backgroundColor: 'skyblue',
-    }
+  input: {
+    width: 300,
+    borderWidth: 1,
+    padding: 5,
+    marginVertical: 15,
+  },
+  button: {
+    backgroundColor: 'skyblue',
+  }
 });
 
 const pickerSelectStyles = StyleSheet.create({

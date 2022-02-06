@@ -1,39 +1,62 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, Pressable, Image } from "react-native";
+import React, {useEffect, useState} from "react";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements";
 
 const Post = (props) => {
   // get data from contentCard
   // display it
-  const propData = props.data;
+  let postData = props.data;
+  postData = {
+    category: "clothing",
+    title: "post title",
+    author: "Firstname Lastname",
+    body: "thsi is the body of the post",
+    description: "a short description",
+    date: new Date(1644095338065),
+    likes: 12,
+  }
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(postData.likes);
+
+  const handleLike = () => {
+    console.log('liked');
+    if(!liked){
+      setLikes(likes+1);
+      setLiked(true);
+    }else{
+      setLikes(likes-1);
+      setLiked(false);
+    }
+  }
 
   return (
     <Card style={styles.card}>
-      <Text style={styles.header}>Posted by: Username</Text>
+      <Text style={styles.header}>Posted by: {postData.author}</Text>
 
-      <Text style={styles.title}>How to fix your laptop</Text>
+      <Text style={styles.title}>{postData.title}</Text>
 
       <Image
         style={styles.image}
         source={{ uri: "https://picsum.photos/200/300" }}
       />
       <View style={styles.icon}>
-        <Icon
-          raised
-          name="favorite"
-          type="material"
-          onPress={() => console.log("hello")}
-        />
-        <Text style={{ textAlign: "center", marginTop: 25 }}>20 Likes</Text>
-        <Icon
-          style={{ alignContent: "right" }}
-          raised
-          name="share"
-          type="material"
-          onPress={() => console.log("hello")}
-        />
-      </View>
+          <Icon
+            raised
+            name="favorite"
+            color={liked? "red" : "black"}
+            type="material"
+            onPress={() => {handleLike()}}
+          />
+          <Text style={{ textAlign: "center", marginTop: 25 }}> {likes} Likes</Text>
+          <Icon
+            style={{ alignContent: "right" }}
+            raised
+            name="share"
+            type="material"
+            onPress={() => console.log("hello")}
+          />
+        </View>
 
       <Card.Divider style={{ paddingBottom: 10 }} />
 
