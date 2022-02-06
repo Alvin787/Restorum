@@ -85,7 +85,7 @@ export default function Home({navigation}) {
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
-                placeholder="Search"
+                placeholder="  Search"
                 onChangeText={newText => setSearch(newText)}
                 onSubmitEditing={handleSubmit}
                 value={search}
@@ -124,10 +124,11 @@ const styles = StyleSheet.create({
     },
       input: {
         height: 40,
-        width: '100%',
+        width: '90%',
         color: 'black',
         borderWidth: 1,
-        padding: 10,
+        margin: 18,
+        borderRadius: 20,
       },
       filterList: {
         flexDirection: 'row',
