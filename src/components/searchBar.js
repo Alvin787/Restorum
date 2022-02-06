@@ -164,5 +164,6 @@ const styles = StyleSheet.create({
   filterText: {
     color: 'black',
   }
+  
 });
 
