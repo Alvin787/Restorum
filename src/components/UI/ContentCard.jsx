@@ -19,9 +19,8 @@ const ContentCard = (props) => {
       </Text>
       <Text>Posted in {postData.category}</Text>
       <Card.Divider />
-      <Text style={{paddingBottom: 20}}>{description}</Text>
+      <Text style={{ paddingBottom: 20 }}>{description}</Text>
       <Button
-        style={{ borderRadius: 80 }}
         color={Colors.primary}
         onPress={() => {
           props.routeToPostBody(postData);
