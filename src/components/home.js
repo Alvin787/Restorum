@@ -83,10 +83,10 @@ export default function Home({navigation}) {
   return (
     <AuthProvider>
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Restorum</Text>
-        </View>
         <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Restorum</Text>
+          </View>
           <TextInput
               style={styles.input}
               placeholder="Search"
