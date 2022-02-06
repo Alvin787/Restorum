@@ -1,5 +1,5 @@
 import { React, useState, useContext } from "react";
-import { StyleSheet, Text, View, Button, Pressable } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import { AuthContext, AuthProvider } from "../../contexts/authContext";
 import { Card } from "react-native-elements";
 import dateFormat from "dateformat";
@@ -20,15 +20,40 @@ const ContentCard = (props) => {
       <Text>Posted in {postData.category}</Text>
       <Card.Divider />
       <Text>{description}</Text>
-      <Button
-        color={Colors.primary}
+      <TouchableHighlight
+        style={styles.button}
+        activeOpacity='0.85'
+        underlayColor={Colors.primaryLight}
         onPress={() => {
           props.routeToPostBody(postData);
         }}
         title={"Read more"}
-      />
+      >
+        <Text style={styles.text}>
+          Read More
+        </Text>
+      </TouchableHighlight>
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '20%',
+    marginTop: 15,
+    paddingHorizontal: 1,
+    paddingVertical: 10,
+    borderRadius: 15,
+    backgroundColor: Colors.primary,
+  },
+  text: {
+    color: Colors.secondary,
+    fontSize: 15,
+  }
+});
+
 
 export default ContentCard;

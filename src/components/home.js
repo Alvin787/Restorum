@@ -20,7 +20,7 @@ export default function Home({navigation}) {
     'bathroom': true,
     'house': true,
     'kitchen': true,
-    "automotive": true, 
+    "automotives": true, 
   });
   const [posts, setPosts] = useState([]);
   const [postsJSX, setPostsJSX] = useState(null);
@@ -42,7 +42,6 @@ export default function Home({navigation}) {
         })
       }
     }
-    
     setPosts(postSearchResults);
   }
 
