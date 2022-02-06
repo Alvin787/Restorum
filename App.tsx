@@ -13,7 +13,6 @@ export default function App() {
   return (
     <AuthProvider>
       <Post></Post>
-      <ContentCard/>
       <View style={styles.container}>
         <SearchBar />
         <Text>Sign in screen</Text>

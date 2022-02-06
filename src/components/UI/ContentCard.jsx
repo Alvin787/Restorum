@@ -1,4 +1,4 @@
-import {React, useContext} from 'react';
+import { React, useContext } from 'react';
 import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import { AuthContext, AuthProvider } from '../../contexts/authContext';
 import { Card } from 'react-native-elements';
@@ -9,19 +9,9 @@ const ContentCard = (props) => {
     const user = useContext(AuthContext);
     let postData = props.data;
 
-    postData = {
-        category: "clothing",
-        title: "post title",
-        author: "Firstname Lastname",
-        body: "thsi is the body of the post",
-        description: "a short description",
-        date: new Date(1644095338065),
-        likes: 12,
-    }
-
     const routeToPostBody = () => {
         console.log('route');
-        
+
     }
     return (
         <Card>
@@ -30,7 +20,7 @@ const ContentCard = (props) => {
             <Text>Posted in {postData.category}</Text>
             <Card.Divider />
             <Text>{postData.description}</Text>
-            <Button onPress={routeToPostBody} title={"Read more"}/>
+            <Button onPress={routeToPostBody} title={"Read more"} />
         </Card>
     )
 };
