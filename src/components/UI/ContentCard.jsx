@@ -9,7 +9,8 @@ const ContentCard = (props) => {
   const user = useContext(AuthContext);
 
   const postData = props.data;
-  const description = postData.body.substring(0, 90) + "...";
+ 
+  const description = (postData.body.length>90) ? postData.body.substring(0, 90) + "...": postData.body;
 
   return (
     <Card>

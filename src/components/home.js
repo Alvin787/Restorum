@@ -138,10 +138,11 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    width: '100%',
+    width: '90%',
     color: 'black',
     borderWidth: 1,
-    padding: 10,
+    padding: 20,
+    borderRadius: 20,
   },
   filterList: {
     flexDirection: 'row',
