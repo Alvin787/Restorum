@@ -16,15 +16,6 @@ export default function SearchBar() {
     'automotives': false,
   });
 
-//   const postData = {
-//     category: "clothing",
-//     title: "post title",
-//     author: "Firstname Lastname",
-//     body: "thsi is the body of the post",
-//     description: "a short description",
-//     date: new Date(1644095338065),
-//     likes: 12,
-// }
   const [posts, setPosts] = useState([]);
   const [postsJSX, setPostsJSX] = useState(null);
 

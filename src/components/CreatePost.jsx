@@ -3,7 +3,8 @@ import React from 'react';
 import { useContext } from 'react';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import RNPickerSelect from 'react-native-picker-select';
-import { AuthContext } from '../contexts/authContext'
+import { AuthContext } from '../contexts/authContext';
+import {Colors} from './UI/colors';
 
 import { db } from '../firebase';
 import { collection, setDoc, doc, query, where, getDocs } from 'firebase/firestore';

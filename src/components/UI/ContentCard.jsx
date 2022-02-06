@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Pressable } from 'react-native';
 import { AuthContext, AuthProvider } from '../../contexts/authContext';
 import { Card } from 'react-native-elements';
 import dateFormat from 'dateformat';
+import {Colors} from './colors';
 
 
 const ContentCard = (props) => {
@@ -16,7 +17,7 @@ const ContentCard = (props) => {
             <Text>Posted in {postData.category}</Text>
             <Card.Divider />
             <Text>{postData.description}</Text>
-            <Button onPress={() => {props.routeToPostBody(postData)}} title={"Read more"} />
+            <Button color={Colors.primary} onPress={() => {props.routeToPostBody(postData)}} title={"Read more"} />
         </Card>
     )
 };
