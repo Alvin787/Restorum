@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Pressable, Text } from 'react-native';
-import ContentCard from './UI/ContentCard';;
+import ContentCard from './UI/ContentCard';
 import { db } from '../firebase';
 import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 
@@ -16,15 +16,6 @@ export default function SearchBar() {
     'automotives': false,
   });
 
-//   const postData = {
-//     category: "clothing",
-//     title: "post title",
-//     author: "Firstname Lastname",
-//     body: "thsi is the body of the post",
-//     description: "a short description",
-//     date: new Date(1644095338065),
-//     likes: 12,
-// }
   const [posts, setPosts] = useState([]);
   const [postsJSX, setPostsJSX] = useState(null);
 
@@ -103,11 +94,15 @@ export default function SearchBar() {
         {Object.entries(filters).map((tag) => (
           <Pressable
             style={
-              tag[1] ? styles.buttonPressed : styles.button
+              tag[1] ? [{ borderColor: '#d9a704', backgroundColor: '#d9a704' }, styles.button] : styles.button
             }
             onPress={() => handlePress(tag[0])}
           >
-            <Text style={styles.filterText}>{tag[0]}</Text>
+            <Text style={
+                tag[1] ? { color: 'white' } : { color: 'black' }
+            }>
+              {tag[0]}
+            </Text>
           </Pressable>
         ))}
       </View>
@@ -147,22 +142,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 5,
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 25,
   },
-  buttonPressed: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 12,
-    marginHorizontal: 5,
-    marginVertical: 5,
-    borderWidth: 1,
-    borderRadius: 20,
-    backgroundColor: 'lightblue',
-  },
-  filterText: {
-    color: 'black',
-  }
-  
 });
 

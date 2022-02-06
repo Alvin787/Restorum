@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements";
 import dateFormat from 'dateformat';
+import {Colors} from './UI/colors';
 
 const Post = ({route, navigation}) => {
   // get data from contentCard
@@ -67,7 +68,7 @@ const Post = ({route, navigation}) => {
       <Text style={styles.description}>
       {postData.description}
       </Text>
-      <Button onPress={() => navigation.goBack()} title="GO BACK"></Button>
+      <Button color={Colors.primary} onPress={() => navigation.goBack()} title="GO BACK"></Button>
     </Card>
   );
 };
