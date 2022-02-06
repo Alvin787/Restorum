@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { auth, signInWithGoogle, logOut } from './src/firebase';
 import { AuthContext, AuthProvider } from './src/contexts/authContext';
-import SearchBar from './src/components/searchBar.js/index.js';
+import SearchBar from './src/components/searchBar.js';
 
 import { useContext } from 'react';
 

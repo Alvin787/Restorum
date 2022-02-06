@@ -7,8 +7,8 @@ import { collection, doc, query, where, getDocs } from 'firebase/firestore';
 export default function SearchBar() {
   const [search, setSearch] = React.useState('');
   const [filters, setFilters] = React.useState({
-    'clothing': true,
-    'technology/appliances': false,
+    'clothing': false,
+    'appliances': false,
     'furniture': false,
     'bathroom': false,
     'house': false,
@@ -94,11 +94,15 @@ export default function SearchBar() {
         {Object.entries(filters).map((tag) => (
           <Pressable
             style={
-              tag[1] ? styles.buttonPressed : styles.button
+              tag[1] ? [{ borderColor: '#d9a704', backgroundColor: '#d9a704' }, styles.button] : styles.button
             }
             onPress={() => handlePress(tag[0])}
           >
-            <Text style={styles.filterText}>{tag[0]}</Text>
+            <Text style={
+                tag[1] ? { color: 'white' } : { color: 'black' }
+            }>
+              {tag[0]}
+            </Text>
           </Pressable>
         ))}
       </View>
@@ -137,21 +141,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 5,
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 25,
   },
-  buttonPressed: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 12,
-    marginHorizontal: 5,
-    marginVertical: 5,
-    borderWidth: 1,
-    borderRadius: 20,
-    backgroundColor: 'lightblue',
-  },
-  filterText: {
-    color: 'black',
-  }
 });
 
