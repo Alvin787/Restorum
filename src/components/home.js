@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   results: {
-    width: '80%',
+    maxWidth: '80%',
+    minWidth: '50%'
   },
   titleContainer: {
     backgroundColor: "#fff",
