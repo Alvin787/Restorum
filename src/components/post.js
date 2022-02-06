@@ -2,17 +2,18 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Pressable, Image } from "react-native";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements";
+import dateFormat from 'dateformat';
 
-const Post = (props) => {
+const Post = ({route, navigation}) => {
   // get data from contentCard
   // display it
-  const propData = props.data;
+  const postData = route.params;
 
   return (
     <Card style={styles.card}>
-      <Text style={styles.header}>Posted by: Username</Text>
+      <Text style={styles.header}>Posted by: {postData.author} | {dateFormat(postData.date, "mmmm dS, yyyy")}</Text>
 
-      <Text style={styles.title}>How to fix your laptop</Text>
+      <Text style={styles.title}>{postData.title}</Text>
 
       <Image
         style={styles.image}
@@ -25,7 +26,7 @@ const Post = (props) => {
           type="material"
           onPress={() => console.log("hello")}
         />
-        <Text style={{ textAlign: "center", marginTop: 25 }}>20 Likes</Text>
+        <Text style={{ textAlign: "center", marginTop: 25 }}>{postData.likes == undefined ? 0 : postData.likes} Likes</Text>
         <Icon
           style={{ alignContent: "right" }}
           raised
@@ -39,14 +40,9 @@ const Post = (props) => {
 
       <Text style={styles.title}>Description</Text>
       <Text style={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+      {postData.description}
       </Text>
+      <Button onPress={() => navigation.goBack()} title="GO BACK"></Button>
     </Card>
   );
 };
@@ -70,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   header: {
-    fontWeight: 400,
+    fontWeight: '400',
   },
   icon: {
     flexDirection: "row",
