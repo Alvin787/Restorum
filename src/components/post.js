@@ -66,7 +66,7 @@ const Post = ({route, navigation}) => {
 
       <Text style={styles.title}>Description</Text>
       <Text style={styles.description}>
-      {postData.description}
+      {postData.body}
       </Text>
       <Button color={Colors.primary} onPress={() => navigation.goBack()} title="GO BACK"></Button>
     </Card>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   description: {
-    fontSize: 12,
+    fontSize: 15,
   },
   header: {
     fontWeight: '400',
