@@ -15,6 +15,7 @@
 - Run ```npm start```
 
 ## UofT Hacks 2022 Submission:
+## DEVPOST Link (Demo Video and Image Gallery): https://devpost.com/software/restorum
 
 ## Inspiration
 Wish to be more conscious about your waste output? Restorum is just the app for you! We created a communal hub that lets you share tutorials/guides for the maintenance and repair of personal items.
