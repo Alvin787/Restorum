@@ -49,6 +49,7 @@ The user uploads guides which are stored in Firebase. User login is also done wi
 
 Front-End:
 - React Native
+
 Back-End:
 - FireBase
 
